@@ -1,6 +1,8 @@
 # README
 
-A site for interchange recipes for different diets (for humans for the moment)
+
+A site to interchange recipes of different diets types diets (for humans)
+
 
 * Ruby version => ruby '2.5.1'
 

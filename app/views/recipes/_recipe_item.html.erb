@@ -1,8 +1,8 @@
 <% @recipes.each do |recipe|%>
-<div class='col-md-4'>
-  <div class="card mb-4 shadow-sm" >
-    <%= link_to (image_tag (recipe.main_image), width: '100%', height: '250'), recipe_path(recipe)%>
-    <div class='card-body'>
+<div class='image-wrapper col-md-4'>
+  <div class="img-hov card mb-4 shadow-sm" data-id "<%= recipe.id %>">
+    <%= link_to (image_tag (recipe.main_image_url(:thumb).to_s), width: '100%', class: 'img-hov'), recipe_path(recipe)%>
+    <div class: 'card-body'>
       <p class= 'card-text'>
         <span><%= link_to recipe.title, recipe_path(recipe) %> </span></p>
       <div class="container-flex">
