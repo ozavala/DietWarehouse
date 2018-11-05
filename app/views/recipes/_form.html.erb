@@ -25,7 +25,8 @@
     </div>
     <div class="form-group">
       <%= form.label :remote_main_image_url, "or upload an image url" %>
-      <%= form.text_field :remote_main_image_url if !recipe.thumb_image.nil?%>
+      <%= form.text_field :remote_main_image_url %>
+    
     </div>
     <div class="form-group">
       <%= form.submit 'Save New Recipe', class: 'btn btn-primary btn-block' %>

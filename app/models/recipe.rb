@@ -6,7 +6,7 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :directions, reject_if: :all_blank, allow_destroy: true
 
-  validates :title, :description, :main_image, presence: true
+  validates_presence_of :title, :description, :main_image, presence: true
 
   mount_uploader :thumb_image, RecipeUploader
   mount_uploader :main_image, RecipeUploader
