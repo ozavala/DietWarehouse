@@ -1,9 +1,9 @@
-<%= form_with(model: recipe, local: true) do |form| %>
-<% if recipe.errors.any? %>
+<%= form_for @recipe do |form| %>
+<% if @recipe.errors.any? %>
 <div id="error_explanation">
-  <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+  <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
   <ul>
-    <% recipe.errors.full_messages.each do |message| %>
+    <% @recipe.errors.full_messages.each do |message| %>
     <li><%= message %></li>
     <% end %>
   </ul>
@@ -12,16 +12,20 @@
 
 
 <div class="row">
-    <div class="col-md-4 offset-md-2">
-
+  <div class="col-md-4 offset-md-2">
     <div class="form-group">
       <%= form.label :title %>
       <%= form.text_field :title, class: 'form-control' %>
     </div>
     <div class="form-group">
       <label class="btn btn-primary">
-        Upload a main image file <%= form.file_field :main_image, style: 'display:none;' %>
+        Upload an image file
+        <%= form.file_field :main_image, style: 'display:none;' %>
       </label>
+    </div>
+    <div class="form-group">
+      <%= form.label :remote_main_image_url, "or upload an image url" %>
+      <%= form.text_field :remote_main_image_url if !recipe.thumb_image.nil?%>
     </div>
     <div class="form-group">
       <%= form.submit 'Save New Recipe', class: 'btn btn-primary btn-block' %>
@@ -34,8 +38,39 @@
       <%= form.label :description %>
       <%= form.text_area :description, class: 'form-control', rows: 3 %>
     </div>
-      </div>
+  </div>
+
 
 </div>
+<div class="row">
+  <div class="col-md-6">
+
+    <h3>Ingredients</h3>
+  <div id="ingredients">
+    <%= form.fields_for :ingredients do |ingredient| %>
+      <%= render 'ingredient_fields', f: ingredient %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'add ingredient', form, :ingredients,
+      class: 'btn btn-default add-button' %>
+    </div>
+  </div>
+
+
+
+  </div>
+  <div class="col-md-6">
+    <h3>Directions</h3>
+    <div id="directions">
+      <%= form.fields_for :directions do |direction| %>
+        <%= render 'direction_fields', f: direction %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add Step', form, :directions, class: "btn btn-default add-button" %>
+      </div>
+    </div>
+  </div>
 </div>
+
 <% end %>
