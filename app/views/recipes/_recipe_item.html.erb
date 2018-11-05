@@ -6,12 +6,14 @@
       <p class= 'card-text'>
         <span><%= link_to recipe.title, recipe_path(recipe) %> </span></p>
       <div class="container-flex">
+        <% if user_signed_in? %>
         <button type='button' class="btn btn-outline-secondary">
           <%= link_to "Edit", edit_recipe_path(recipe)  %>
         </button>
         <button type= 'button' class= "btn btn-outline-secondary">
           <%= link_to 'Delete Recipe Item', recipe_path(recipe), method: :delete, data: {confirm: 'Are you sure?'} %>
         </button>
+        <% end %>
       </div>
     </div>
   </div>
