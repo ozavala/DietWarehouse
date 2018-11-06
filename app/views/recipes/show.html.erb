@@ -12,7 +12,9 @@
         <p class="description">
           <%= @recipe.description %>
         </p>
+        <p>Diet Type: <%= Diet.find(@recipe.diet_id).name %>
         <p>Submited by <%= @recipe.user.email %></p>
+
       </div>
     </div>
   </div>
@@ -20,25 +22,25 @@
     <div class="col-md-6">
       <div id="ingredients">
         <h2>Ingredients</h2>
-        <ul>
+        <span class="ingredients-list">
           <% @recipe.ingredients.each do |ingredient| %>
             <li>
               <%= ingredient.name %>
             </li>
           <% end %>
-        </ul>
+        </span>
       </div>
     </div>
     <div class="col-md-6">
       <div id="directions">
         <h2>Directions</h2>
-        <ul>
+        <span class="directions-list">
           <% @recipe.directions.each do |direction| %>
-            <li>
+            <p><li>
               <%= direction.step %>
-            </li>
+            </li></p>
           <% end %>
-        </ul>
+        </span>
       </div>
     </div>
   </div>
